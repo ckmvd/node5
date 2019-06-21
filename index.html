@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table
+        {
+            border-collapse: collapse;
+        }
+        td
+        {
+            border:1px solid #000000;
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        /*
+        *   函数
+        *   function 函数名(参数名1...){
+        *       语句块
+        *   }
+        *   函数也是对象
+        *
+        * */
+//     function createTable() {
+//         var str="<table>";
+//         str+="<tr>";
+//         for(var i=0;i<10;i++){
+//             str+="<td></td>";
+//         }
+//         str+="</tr>";
+//         str+="</table>";
+//         document.write(str);
+//     }
+    function createTable() {
+        var str='<table>';
+        str+='<tr>';
+        for(var i=0;i<5;i++){
+            str+='<td></td>'
+        }
+        str+='</tr>';
+        str+='</table>'
+        document.write(str);
+    }
+     createTable();
+//     document.write("<hr>");
+     createTable();
+//     document.write("<br>");
+     createTable();
+//     document.write("<div></div>");
+     createTable();
+//     document.write("<p></p>");
+     createTable();
+
+
+        /*
+        *   var fn1=function(){}  匿名函数 将匿名函数赋值给变量,执行变量函数就是执行
+        *   这个匿名函数 .匿名函数不能再定义该函数之前执行调用
+        *
+        *
+        *   function fn2(){}  普通函数,可以在定义之前调用函数执行
+        *
+        *   js是解释性语言,在当前script标签代码执行的开始阶段,就会将普通函数放入在堆中,
+        *   只是放入在堆中,但是函数中的内容并没有解析执行,没进行一次函数执行就会解析一次
+        *
+        *
+        *
+        *
+        *
+        * */
+        fn();
+        fn2();
+
+     var fn=function () {
+         return function () {
+         console.log("aaa")
+         };
+     };
+
+    function fn2() {
+        console.log("bbb");
+    }
+
+        /*
+        * 重名的危险
+        *  1.普通函数和匿名函数重名,匿名函数会覆盖普通函数,原因是普通函数
+        *  在script标签开始时就将函数放入在堆中,而匿名函数是在代码解析时候
+        *  才存入堆中的,如果名称相同,就会覆盖原函数
+        *  2.普通函数和变量重名,变量会覆盖普通函数
+        *
+        * */
+
+      /*  var fn3=function () {
+            console.log("ddd");
+        };*/
+    var fn3=10;
+      function fn3() {
+          console.log("ccc");
+      }
+
+
+
+//      fn3();
+
+
+//        构造函数定义法
+        /*
+        *   构造函数定义函数
+        *   使用全字符串,参数在最前面,后面的字符串内容是执行代码的语句
+        *  缺点:
+        *    代码会做2次执行,第一次会将函数中的字符串解析成普通代码,
+        *    第二次执行该代码,因此,效率极低
+        *
+        *
+        *    优点,可以用任何语言传入该js代码并且执行
+        *
+        * */
+        var fn4=new Function("a","console.log(a)");
+
+        fn4(10);
+
+
+
+       /* bn.addEventListener("click",clickHandler);
+
+        function clickHandler(e) {
+            
+        }*/
+
+
+        (function () {
+            console.log("自执行函数")
+//            只能执行一次,执行完成后再也找不到了,变成孤儿对象(有引用的,不可被回收)
+       })();
+    </script>
+</body>
+</html>
